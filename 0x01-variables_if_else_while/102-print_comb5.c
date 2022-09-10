@@ -20,7 +20,7 @@ void setter(int* j, int* k, int* l, int* i)
 		}
 		else if (*j == 56)
 		{
-			*j++;
+			*j = *j + 1;
 			*k = *i + 1;
 			*l = 48;
 		}
@@ -33,12 +33,12 @@ void setter(int* j, int* k, int* l, int* i)
 	}
 	else if (*l < 57)
 	{
-		*l++;
+		*l = *i + 1;
 	}
 	else
 	{
 		*l = 48;
-		*k++;
+		*k = *k + 1;
 	}
 }
 
