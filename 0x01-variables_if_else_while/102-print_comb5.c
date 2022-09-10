@@ -9,7 +9,7 @@
  * Return: Always 0 (Success)
  */
 
-void setter(int j, int k, int l, int i)
+void setter(int* j, int* k, int* l, int* i)
 {
 	if ((k == 57) && (l == 57))
 	{
@@ -64,7 +64,7 @@ int main(void)
 		{
 			putchar(44);
 			putchar(32);
-			setter(j, k, l, i);
+			setter(&j, &k, &l, &i);
 		}
 	}
 	return (0);
