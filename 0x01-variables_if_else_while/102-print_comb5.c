@@ -8,6 +8,40 @@
  *
  * Return: Always 0 (Success)
  */
+
+void setter(int j, int k, int l)
+{
+	if ((k == 57) && (l == 57))
+	{
+		if (j < 56)
+		{
+			l = ++j + 1;
+			k = i;
+		}
+		else if (j == 56)
+		{
+			j++;
+			k = i + 1;
+			l = 48;
+		}
+		else if (j == 57)
+		{
+			j = 48;
+			l = 49;
+			k = ++i;
+		}
+	}
+	else if (l < 57)
+	{
+		l++;
+	}
+	else
+	{
+		l = 48;
+		k++;
+	}
+}
+
 int main(void)
 {
 	int i, j, k, l;
@@ -23,42 +57,14 @@ int main(void)
 		putchar(l);
 		if ((i == 57) && (j == 56) && (k == 57) && (l == 57))
 		{
-			putchar('\n'); 
+			putchar('\n');
 			i++;
 		}
 		else
 		{
 			putchar(44);
 			putchar(32);
-			if ((k == 57) && (l == 57))
-			{
-				if (j < 56)
-				{
-					l = ++j + 1;
-					k = i;
-				}
-				else if (j == 56)
-				{
-					j++;
-				       	k = i + 1;
-					l = 48;
-				}
-				else if (j == 57)
-				{
-					j = 48;
-					l = 49; 
-					k = ++i;
-				}
-			}
-			else if (l < 57)
-			{
-				l++;
-			}
-			else
-			{
-				l = 48;
-			       	k++;
-			}
+			setter(j, k, l)
 		}
 	}
 	return (0);
