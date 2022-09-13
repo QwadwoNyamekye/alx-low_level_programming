@@ -17,7 +17,7 @@ int main(void)
 	while (i <= 9)
 	{
 		char_ = char_arr[i];
-		_putchar(char_);
+		putchar(char_);
 		i++;
 	}
 	return (0);
