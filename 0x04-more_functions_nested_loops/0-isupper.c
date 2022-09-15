@@ -8,12 +8,12 @@
  */
 int _isupper(int in)
 {
-    if ((in >= 'A') && (in <= 'Z'))
-    {
-        return (1);
-    }
-    else
-    {
-        return (0);
-    }
+	if ((in >= 'A') && (in <= 'Z'))
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
 }
