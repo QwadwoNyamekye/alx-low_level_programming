@@ -1,63 +1,76 @@
 #include "main.h"
-#include <stdio.h>
+#include <stdlib.h>
 
 /**
-* wordnos - counts number of words in a given string.
-* @str: pointer to string.
-*
-* Return: number of words in the string.
-* type - int.
-*/
-int wordnos(char *str)
+ * wrdcnt - counts the number of words in a string
+ * @s: string to count
+ *
+ * Return: int of number of words
+ */
+int wrdcnt(char *s)
 {
-	int word_no, i, j;
+	int i, n = 0;
 
-	word_no = 0;
-	i = 0;
-	while (*(str + i) != '\0')
+	for (i = 0; s[i]; i++)
 	{
-		if (*(str + i) != 32 && *(str + i) != '\0')
+		if (s[i] == ' ')
 		{
-			j = i;
-			while (*(str + j) != 32 && *(str + j) != '\0')
-				j++;
-			word_no++;
-			i = j - 1;
+			if (s[i + 1] != ' ' && s[i + 1] != '\0')
+				n++;
 		}
-		i++;
+		else if (i == 0)
+			n++;
 	}
-	return (word_no);
+	n++;
+	return (n);
 }
 
 /**
-* cpystr - copies words in string to 2D array of strings.
-* @s: double pointer to a 2D array of strings.
-* @str: pointer to string whose words are to be copied.
-*
-* Return: void.
-*/
-void cpystr(char **s, char *str)
+ * strtow - splits a string into words
+ * @str: string to split
+ *
+ * Return: pointer to an array of strings
+ */
+char **strtow(char *str)
 {
-	int i, j, k, idx;
+	int i, j, k, l, n = 0, wc = 0;
+	char **w;
 
+	if (str == NULL || *str == '\0')
+		return (NULL);
+	n = wrdcnt(str);
+	if (n == 1)
+		return (NULL);
+	w = (char **)malloc(n * sizeof(char *));
+	if (w == NULL)
+		return (NULL);
+	w[n - 1] = NULL;
 	i = 0;
-	idx = 0;
-	while (*(str + i) != '\0')
+	while (str[i])
 	{
-		if (*(str + i) != 32 && *(str + i) != '\0')
+		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
 		{
-			j = i;
-			k = 0;
-			while (*(str + j) != 32 && *(str + j) != '\0')
+			for (j = 1; str[i + j] != ' ' && str[i + j]; j++)
+				;
+			j++;
+			w[wc] = (char *)malloc(j * sizeof(char));
+			j--;
+			if (w[wc] == NULL)
 			{
-				s[idx][k] = *(str + j);
-				k++;
-				j++;
+				for (k = 0; k < wc; k++)
+					free(w[k]);
+				free(w[n - 1]);
+				free(w);
+				return (NULL);
 			}
-			s[idx][k] = '\0';
-			idx++;
-			i = j;
+			for (l = 0; l < j; l++)
+				w[wc][l] = str[i + l];
+			w[wc][l] = '\0';
+			wc++;
+			i += j;
 		}
-		i++;
+		else
+			i++;
 	}
+	return (w);
 }
